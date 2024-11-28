@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { fetcher } from "../../config";
 import { Swiper, SwiperSlide } from "swiper/react";
 const Banner = () => {
-  const { data, error, isLoading } = useSWR(
+  const { data } = useSWR(
     `https://api.themoviedb.org/3/movie/upcoming?api_key=ce987fc08296d0e267123d702cc62a96`,
     fetcher
   );
