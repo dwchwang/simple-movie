@@ -3,6 +3,7 @@ import useSWR from "swr";
 import { fetcher } from "../../config";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router-dom";
+import Button from "../button/Button";
 const Banner = () => {
   const { data } = useSWR(
     `https://api.themoviedb.org/3/movie/upcoming?api_key=ce987fc08296d0e267123d702cc62a96`,
@@ -48,12 +49,7 @@ const BannerItem = ({ item }) => {
             Adventure
           </span>
         </div>
-        <button
-          className="py-3 px-6 bg-primary rounded-lg text-white font-medium"
-          onClick={() => navigate(`/movie/${id}`)}
-        >
-          Watch now
-        </button>
+        <Button onClick={() => navigate(`/movie/${id}`)}>Watch now</Button>
       </div>
     </div>
   );
