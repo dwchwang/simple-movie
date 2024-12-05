@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { fetcher, tmdbAPI } from "config";
 import useSWR from "swr";
-import MovieCard from "components/movies/MovieCard";
+import MovieCard, { MovieCardSkeleton } from "components/movies/MovieCard";
 import useDebounce from "hooks/useDebounce";
 import ReactPaginate from "react-paginate";
+import { v4 } from "uuid";
 
 const itemsPerPage = 20;
 const MoviePage = () => {
@@ -64,8 +65,15 @@ const MoviePage = () => {
           </svg>
         </button>
       </div>
-      {isLoading && (
+      {/* {isLoading && (
         <div className="w-10 h-10 border-4 rounded-full border-t-4 border-t-transparent border-primary animate-spin mx-auto"></div>
+      )} */}
+      {isLoading && (
+        <div className="grid grid-cols-4 gap-10 mb-10">
+          {new Array(itemsPerPage).fill(0).map(() => (
+            <MovieCardSkeleton key={v4()}></MovieCardSkeleton>
+          ))}
+        </div>
       )}
       <div className="grid grid-cols-4 gap-10 mb-10">
         {!isLoading &&
